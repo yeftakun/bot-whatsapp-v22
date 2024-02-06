@@ -2,7 +2,7 @@
 
 Setup di local
 ```
-git clone https://github.com/yeftakun/BotWA.git
+git clone https://github.com/yeftakun/bot-whatsapp-v22.git
 cd BotWA
 npm install
 npm start
