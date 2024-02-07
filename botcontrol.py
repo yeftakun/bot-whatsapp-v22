@@ -1,16 +1,18 @@
 import telebot
 import requests
+import time
+
 """
 jalan pke mp2 di file ecosystem2.config.js
 """
 #import mysql.connector
 
 # konfigurasi ---> ubah token dan pass kalian
-bot = telebot.TeleBot('BOT_TOKEN')
-mypass = "halo1234"
+bot = telebot.TeleBot('token')
+mypass = "pass anda"
 # endpoint
 api_start = "https://xxxxx.execute-api.ap-southeast-1.amazonaws.com/default/ec2startNew"
-api_stop = "https://xxxxx.execute-api.ap-southeast-1.amazonaws.com/default/ec2stopNew"
+api_stop = "https://yyyyyy.execute-api.ap-southeast-1.amazonaws.com/default/ec2stopNew"
 
 #Fungsi Start
 @bot.message_handler(commands=['start'])
@@ -38,7 +40,7 @@ def check_password_forstart(message):
     if message.text == mypass:
         response = requests.get(api_start)
         bot.reply_to(message, response.text)
-        bot.reply_to(message, "Bot wa.me/628xxx sekarang berjalan")
+        bot.reply_to(message, "Bot wa.me/6285775471308 sekarang berjalan")
     else:
         bot.reply_to(message, "Password salah. Masukan kembali command.")
 #===============================
@@ -56,6 +58,12 @@ def check_password_forstop(message):
     else:
         bot.reply_to(message, "Password salah. Masukan kembali command.")
 #===============================
+"""
+def stoping_server(message):
+    response = requests.get("https://t4cylwsagc.execute-api.ap-southeast-1.amazonaws.com/default/ec2stopNew")
+    bot.reply_to(message, response.text)
+"""
+
 @bot.message_handler(func=lambda message: True)
 def handle_unknown_command(message):
     bot.reply_to(message, "Maaf, perintah salah. Silakan kirim lagi perintah yang valid, atau klik /start untuk lanjut.\n\nhttps://media.giphy.com/media/a6pzK009rlCak/giphy.gif")

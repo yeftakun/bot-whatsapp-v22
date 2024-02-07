@@ -49,7 +49,7 @@
 
 ## Install & Setup on EC2 Instance
 
-**Install nodejs, git, pm2**
+**Install**
 ```
 sudo yum update -y
 sudo yum install -y nodejs

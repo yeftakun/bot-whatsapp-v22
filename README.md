@@ -2,10 +2,7 @@
 
 Setup di local
 ```
-git clone https://github.com/yeftakun/bot-whatsapp-v22.git
-```
-Personalisasi pada file [hwkal.js](hwkal.js)
-```
+git clone https://github.com/yeftakun/BotWA.git
 cd BotWA
 npm install
 npm start

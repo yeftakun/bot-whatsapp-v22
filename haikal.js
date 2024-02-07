@@ -13,6 +13,7 @@ commit by yefta (ctrl+F pada editor):
 //recode : Bii
 //recode : Rafathar Offcial
 //recode : kenzoOffcial
+//recode : Yefta Asyel
 //=================================================//
 require('./hwkal')
 const { WA_DEFAULT_EPHEMERAL, getAggregateVotesInPollMessage, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, downloadContentFromMessage, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys")
@@ -71,7 +72,46 @@ const apknye = JSON.parse(fs.readFileSync('./database/apk.json'))
 const ntilink = JSON.parse(fs.readFileSync("./lib/antilink.json"))
 const antidel = JSON.parse(fs.readFileSync("./lib/antidel.json"))
 const banned = JSON.parse(fs.readFileSync('./baseikal/dbnye/banned.json'))
+const isipengumuman = JSON.parse(fs.readFileSync('pengumuman.json'))
 
+function tulisPengumuman(pengumuman) {
+  try {
+    const data = JSON.stringify({ pengumuman });
+    fs.writeFileSync('pengumuman.json', data);
+    console.log('Pengumuman berhasil diperbarui.');
+  } catch (error) {
+    console.error('Gagal menulis pengumuman:', error);
+  }
+}
+function bacaPengumuman() {
+  try {
+    const data = fs.readFileSync('pengumuman.json','utf8');
+    const isinya = JSON.parse(data);
+    return { isipengumuman2: isinya['pengumuman'] };
+  } catch (error) {
+    console.error('Gagal membaca pengumuman:', error);
+    return { isipengumuman2: 'Gagal membaca pengumuman.' };
+  }
+}
+/*
+function bacaPengumuman() {
+  try {
+    const data = fs.readFileSync('pengumuman.json','utf8');
+    const isinya = JSON.parse(data);
+    return isinya['pengumuman'];
+  } catch (error) {
+    console.error('Gagal membaca pengumuman:', error);
+    return 'Gagal membaca pengumuman.';
+  }
+}*/
+
+function refreshPengumuman() {
+  fs.watchFile('pengumuman.json', (curr, prev) => {
+    isipengumuman2 = bacaPengumuman();
+  });
+}
+refreshPengumuman();
+const { isipengumuman2 } = bacaPengumuman();
 virgam = fs.readFileSync(`./baseikal/image/deden.jpeg`)
 //=================================================//
 module.exports = haikal = async (haikal, m, chatUpdate, store) => {
@@ -654,7 +694,7 @@ user.afkReason = ''
 switch(command) {
 case 'menu': 
 case 'rafa':
-if (!isCreator) return m.reply('*_Maaf, Sc Ini Bersifat Private, silahkan daftar dengan_* addprem (628xxx)')
+if (!isCreator) return m.reply('_Maaf, Sc Ini Bersifat Private, silahkan daftar dengan_ *addprem (628xxx)*. Ketik *info* untuk melihat tentang bot')
 var sanzytod = [
 "_Hello My Name is Yefta Asyel_",
 "_Base Script : HwMods_",
@@ -699,12 +739,11 @@ Version 22
 ⏳ ᴅᴏᴡɴʟᴏᴀᴅᴍᴇɴᴜ
 ⏳ ᴛᴇxᴛᴍᴀᴋᴇʀ
 ⏳ ʟɪꜱᴛᴍᴜꜱɪᴋ
-⏳ ᴄᴜᴄɪᴍᴀᴛᴀ
-⏳ ᴀꜱᴜᴘᴀɴ
 ⏳ ᴘᴜʙʟɪᴄ
 ⏳ ꜱᴇʟꜰ
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
-*SC BOT*
+*TENTANG BOT*
+> info
 > sccurrent
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬`
 ]
@@ -805,9 +844,11 @@ mentionedJid:[sender],
 break
 //=================================================//
 case 'sccurrent' : {
-  await loading()
-  m.reply('https://github.com/yeftakun/BotWA')
-}
+if (!isCreator){
+    m.reply('*_Maaf, Sc Ini Bersifat Private_*')
+}else{
+  m.reply('https://github.com/yeftakun/bot-whatsapp-v22')
+}}
 break
 //=================================================//
 case 'groupmenu': {
@@ -1441,36 +1482,29 @@ mentionedJid:[sender],
 })
 break
 //=================================================//
-case 'asupan':
-if (!isCreator) return m.reply('*_Maaf, Sc Ini Bersifat Private_*')
-await loading()
+case 'umumkan':
+if (!args.length) return m.reply('Tidak ada pesan yang diberikan untuk diumumkan.');
+const announcement = args.join(' ');
+m.reply('Merubah pengumuman, restart bot...\nPengumuman diubah setelah bot kembali online');
+tulisPengumuman(announcement);
+m.reply('Pengumuman berhasil diperbarui.');
+break;
+//=================================================//
+case 'info':
+if (!isCreator){
 let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())}
 Jam : ${time}`
 sendGeekzMessage(from, { 
-text: `Hay Kak ${pushname} 👋 Selamat ${salam}
+text: `Konnichiwa ${pushname} 👋
 Total Pengguna Premium :  ${owner.length}
 Status : ${isCreator ? 'Premium' : 'Free'}
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
-${prefix} asupan1
-${prefix} asupan2
-${prefix} asupan3
-${prefix} asupan4
-${prefix} asupan5
-${prefix} asupan6
-${prefix} asupan7
-${prefix} asupan8
-${prefix} asupan9
-${prefix} asupan10
-${prefix} asupan11
-${prefix} asupan12
-${prefix} asupan13
-${prefix} asupan14
-${prefix} asupan15
-${prefix} asupan16
-${prefix} asupan17
-${prefix} asupan18
-${prefix} asupan18
-${prefix} asupan20`,
+${prefix} ⏳ Amazon Linux 2023 AMI 
+${prefix} ⏱️ 9:00 - 21:00 WITA
+${prefix} 📃 *Tersedia untuk Premium*
+▬▭▬▭▬▭▬▭▬▬▭▬▭▬
+${prefix} Pengumuman: 
+${prefix} *Tersedia untuk Premium*`,
 mentions:[sender],
 contextInfo:{
 mentionedJid:[sender],
@@ -1486,6 +1520,38 @@ mentionedJid:[sender],
 }
 }
 })
+}else{
+//refreshPengumuman();
+let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())}
+Jam : ${time}`
+sendGeekzMessage(from, { 
+text: `Konnichiwa ${pushname} 👋
+Total Pengguna Premium :  ${owner.length}
+Status : ${isCreator ? 'Premium' : 'Free'}
+▬▭▬▭▬▭▬▭▬▬▭▬▭▬
+${prefix} ⏳ Amazon Linux 2023 AMI 
+${prefix} ⏱️ 9:00 - 21:00 WITA
+${prefix} 📃 https://sl.unsrat.ac.id/yRAxia
+▬▭▬▭▬▭▬▭▬▬▭▬▭▬
+${prefix} Pengumuman: 
+${prefix} ${isipengumuman2}`,
+mentions:[sender],
+contextInfo:{
+mentionedJid:[sender],
+"externalAdReply": {
+"showAdAttribution": true,
+"renderLargerThumbnail": true,
+"title": foottgkkzjo, 
+"containsAutoReply": true,
+"mediaType": 1, 
+"thumbnail": kalimage,
+"mediaUrl": gr,
+"sourceUrl": gr
+}
+}
+})
+}
+
 break
 //=================================================//
 case 'funmenu':
