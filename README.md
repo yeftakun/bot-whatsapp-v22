@@ -2,16 +2,16 @@
 
 Setup di local
 ```
-git clone https://github.com/yeftakun/bot-whatsapp-v22.git
+git clone https://github.com/yeftakun/BotWA.git
 ```
-Personalisasi pada file [hwkal.js](hwkal.js)
+Personalisasikan di file [hwkal.js](hwkal.js)
 ```
-cd bot-whatsapp-v22
+cd BotWA
 npm install
 npm start
 ```
-[Deploy ke AWS EC2 Instance](GUIDE-AWS.md)
+[Deploy ke AWS EC2 Instance](md/GUIDE-AWS.md)
 
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
 
-**Credit:** [old README](oldREADME.md)
+**Credit:** [old README](md/oldREADME.md)

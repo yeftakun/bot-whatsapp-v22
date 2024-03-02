@@ -2,6 +2,8 @@
 
 [source](https://youtu.be/kZOn46Us8WQ?si=Mzkl8EMW8YmSAyBc)
 
+<blockquote>Nanti bakal diupdate untuk case ini</blockquote>
+
 ### Task 1: Create one Windows/Linux instance. 
 
 ### Task 2: Open the IAM service and create a role to access lambda services. 

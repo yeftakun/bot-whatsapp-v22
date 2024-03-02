@@ -16,6 +16,7 @@ commit by yefta (ctrl+F pada editor):
 //recode : Yefta Asyel
 //=================================================//
 require('./hwkal')
+const masterpass = 'hehe'
 const { WA_DEFAULT_EPHEMERAL, getAggregateVotesInPollMessage, generateWAMessageFromContent, proto, generateWAMessageContent, generateWAMessage, prepareWAMessageMedia, downloadContentFromMessage, areJidsSameUser, getContentType } = require("@whiskeysockets/baileys")
 const fs = require('fs')
 const util = require('util')
@@ -743,6 +744,7 @@ Version 22
 ⏳ ꜱᴇʟꜰ
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
 *TENTANG BOT*
+> stopme
 > info
 > sccurrent
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬`
@@ -1482,29 +1484,42 @@ mentionedJid:[sender],
 })
 break
 //=================================================//
-case 'umumkan':
-if (!args.length) return m.reply('Tidak ada pesan yang diberikan untuk diumumkan.');
-const announcement = args.join(' ');
-m.reply('Merubah pengumuman, restart bot...\nPengumuman diubah setelah bot kembali online');
+case 'stopme': 
+  if (!args.length) return m.reply('Gunakan *stopme <pass>*'); 
+  const input = args.join(' ');
+  const fs = require('fs');
+  const mypass = fs.readFileSync('passnya.txt', 'utf8').trim(); // Baca nilai string dari file passnya.txt
+  if (input === mypass) {
+      m.reply('Bot dimatikan...\nHidupkan manual di AWS Console')
+      const axios = require('axios');
+      m.reply('👍')
+      axios.post('https://t4cylwsagc.execute-api.ap-southeast-1.amazonaws.com/default/ec2stopNew');
+  } else {
+    m.reply('Password salah');
+  }
+break;
+//=================================================//
+case 'umumkan': 
+if (!args.length) return m.reply('Tidak ada pesan yang diberikan untuk diumumkan.'); 
+const announcement = args.join(' '); 
+m.reply('Merubah pengumuman, restart bot...\nPengumuman diubah setelah bot kembali online'); 
 tulisPengumuman(announcement);
-m.reply('Pengumuman berhasil diperbarui.');
 break;
 //=================================================//
 case 'info':
 if (!isCreator){
-let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())}
-Jam : ${time}`
+let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())} | Jam : ${time}`
 sendGeekzMessage(from, { 
 text: `Konnichiwa ${pushname} 👋
 Total Pengguna Premium :  ${owner.length}
 Status : ${isCreator ? 'Premium' : 'Free'}
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
 ${prefix} ⏳ Amazon Linux 2023 AMI 
-${prefix} ⏱️ 9:00 - 21:00 WITA
+${prefix} ⏱️ 24 jam
 ${prefix} 📃 *Tersedia untuk Premium*
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
-${prefix} Pengumuman: 
-${prefix} *Tersedia untuk Premium*`,
+${prefix}Pengumuman: 
+${prefix}*Tersedia untuk Premium*`,
 mentions:[sender],
 contextInfo:{
 mentionedJid:[sender],
@@ -1522,19 +1537,18 @@ mentionedJid:[sender],
 })
 }else{
 //refreshPengumuman();
-let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())}
-Jam : ${time}`
+let foottgkkzjo = `Runtime : ⏳ ${runtime(process.uptime())} | Jam : ${time}`
 sendGeekzMessage(from, { 
 text: `Konnichiwa ${pushname} 👋
 Total Pengguna Premium :  ${owner.length}
 Status : ${isCreator ? 'Premium' : 'Free'}
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
 ${prefix} ⏳ Amazon Linux 2023 AMI 
-${prefix} ⏱️ 9:00 - 21:00 WITA
+${prefix} ⏱️ 24 jam
 ${prefix} 📃 https://sl.unsrat.ac.id/yRAxia
 ▬▭▬▭▬▭▬▭▬▬▭▬▭▬
-${prefix} Pengumuman: 
-${prefix} ${isipengumuman2}`,
+${prefix}Pengumuman: 
+${prefix}${isipengumuman2}`,
 mentions:[sender],
 contextInfo:{
 mentionedJid:[sender],

@@ -5,9 +5,9 @@
 const fs = require('fs')
 const chalk = require('chalk')
 
-global.gr = 'https://chat.whatsapp.com/xxxx'
+global.gr = 'https://chat.whatsapp.com/xxx'
 global.ig = '@yeftaasyel' // ubah aja
-global.email = 'emailanada@gmail.com' //serah
+global.email = 'yeftaasyel34@gmail.com' //serah
 global.region = 'indonesia' // serah
 //—————「 Set Nama Own & Bot 」—————//
 global.ownername = 'Yefta Asyel' //ubah jadi nama mu, note tanda ' gausah di hapus!
@@ -17,7 +17,8 @@ global.capikey2 = 'ptlc_4fO85Fc8ICGUHAh03lAqt3jW69mW9AHzdt2SS4IlulS' // Isi Apik
 global.eggsnya = '15' // id eggs yang dipakai
 global.location = '1' // id location
 //=================================================//
-global.owner = ['62827828888'] // ubah aja pake nomor lu
+global.owner = ['628xxx'] // ubah aja pake nomor lu
+const botnum = '628xxx'
 //==========================BY Hw Mods=======================//
 global.keyopenai = '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'
 //====================BY Hw Mods=============================//
